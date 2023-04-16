@@ -42,4 +42,10 @@
         <file>icon/chart-type/chart-spectrogram.svg</file>
         <file>icon/chart-type/chart-vectorfield.svg</file>
     </qresource>
+    <qresource prefix="/gui/chart-setting">
+        <file>icon/axisLeftBottom.svg</file>
+        <file>icon/axisLeftTop.svg</file>
+        <file>icon/axisRightBottom.svg</file>
+        <file>icon/axisRightTop.svg</file>
+    </qresource>
 </RCC>

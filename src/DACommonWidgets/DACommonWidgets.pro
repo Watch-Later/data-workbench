@@ -27,6 +27,7 @@ HEADERS += \
     DAAbstractSettingPage.h \
     DABrushEditWidget.h \
     DABrushStyleComboBox.h \
+    DACollapsibleGroupBox.h \
     DAColorPickerButton.h \
     DACommonWidgetsAPI.h \
     DAFontEditPannelWidget.h \
@@ -40,6 +41,7 @@ SOURCES += \
     DAAbstractSettingPage.cpp \
     DABrushEditWidget.cpp \
     DABrushStyleComboBox.cpp \
+    DACollapsibleGroupBox.cpp \
     DAColorPickerButton.cpp \
     DAFontEditPannelWidget.cpp \
     DAPathLineEdit.cpp \

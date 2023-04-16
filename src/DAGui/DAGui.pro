@@ -59,6 +59,7 @@ include($$PWD/Models/Models.pri)
 include($$PWD/Dialog/Dialog.pri)
 include($$PWD/MimeData/MimeData.pri)
 include($$PWD/Commands/Commands.pri)
+include($$PWD/ChartSetting/ChartSetting.pri)
 include($$PWD/SettingPages/SettingPages.pri)
 HEADERS +=\
     DAAbstractChartAddItemWidget.h \
