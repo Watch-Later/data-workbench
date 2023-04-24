@@ -10,13 +10,14 @@ namespace DA
  */
 class DAGUI_API DAChartSymbolComboBox : public QComboBox
 {
+    Q_OBJECT
 public:
     DAChartSymbolComboBox(QWidget* par = 0);
     //
     void setSymbolStyle(const QwtSymbol::Style& s);
     QwtSymbol::Style getSymbolStyle() const;
     static QwtSymbol::Style style(int index);
-    static int symbolIndex(const QwtSymbol::Style& style);
+    static int symbolIndex(const QwtSymbol::Style& s);
 signals:
     /**
      * @brief symbolStyleChanged
@@ -30,8 +31,9 @@ private:
     void buildItems();
 
 private:
-    static const QwtSymbol::Style symbols[];
+    //    static const QwtSymbol::Style s_symbols[];
 };
 }
+Q_DECLARE_METATYPE(QwtSymbol::Style)
 
 #endif  // DACHARTSYMBOLCOMBOBOX_H

@@ -1,22 +1,25 @@
-#ifndef DACHARTSYMBOLEDITWIDGET_H
+﻿#ifndef DACHARTSYMBOLEDITWIDGET_H
 #define DACHARTSYMBOLEDITWIDGET_H
 
 #include <QWidget>
-
-namespace Ui {
+#include "DAGuiAPI.h"
+namespace Ui
+{
 class DAChartSymbolEditWidget;
 }
-
-class DAChartSymbolEditWidget : public QWidget
+namespace DA
+{
+class DAGUI_API DAChartSymbolEditWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit DAChartSymbolEditWidget(QWidget *parent = nullptr);
+    explicit DAChartSymbolEditWidget(QWidget* parent = nullptr);
     ~DAChartSymbolEditWidget();
 
 private:
-    Ui::DAChartSymbolEditWidget *ui;
+    Ui::DAChartSymbolEditWidget* ui;
 };
+}
 
-#endif // DACHARTSYMBOLEDITWIDGET_H
+#endif  // DACHARTSYMBOLEDITWIDGET_H

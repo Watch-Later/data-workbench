@@ -1,13 +1,16 @@
 ﻿#include "DAChartSymbolComboBox.h"
+#include <QPainter>
+#include <vector>
+#include <iterator>
 namespace DA
 {
 
-const QwtSymbol::Style SymbolBox::symbols[] = { QwtSymbol::NoSymbol,  QwtSymbol::Ellipse,   QwtSymbol::Rect,
-                                                QwtSymbol::Diamond,   QwtSymbol::Triangle,  QwtSymbol::DTriangle,
-                                                QwtSymbol::UTriangle, QwtSymbol::LTriangle, QwtSymbol::RTriangle,
-                                                QwtSymbol::Cross,     QwtSymbol::XCross,    QwtSymbol::HLine,
-                                                QwtSymbol::VLine,     QwtSymbol::Star1,     QwtSymbol::Star2,
-                                                QwtSymbol::Hexagon };
+const std::vector< QwtSymbol::Style > s_symbols = { QwtSymbol::NoSymbol,  QwtSymbol::Ellipse,   QwtSymbol::Rect,
+                                                    QwtSymbol::Diamond,   QwtSymbol::Triangle,  QwtSymbol::DTriangle,
+                                                    QwtSymbol::UTriangle, QwtSymbol::LTriangle, QwtSymbol::RTriangle,
+                                                    QwtSymbol::Cross,     QwtSymbol::XCross,    QwtSymbol::HLine,
+                                                    QwtSymbol::VLine,     QwtSymbol::Star1,     QwtSymbol::Star2,
+                                                    QwtSymbol::Hexagon };
 
 DAChartSymbolComboBox::DAChartSymbolComboBox(QWidget* par) : QComboBox(par)
 {
@@ -112,19 +115,19 @@ void DAChartSymbolComboBox::buildItems()
 }
 void DAChartSymbolComboBox::setSymbolStyle(const QwtSymbol::Style& s)
 {
-    const QwtSymbol::Style* ite = std::find(symbols, symbols + sizeof(symbols), style);
-    if (ite == symbols + sizeof(symbols)) {
+    auto ite = std::find(s_symbols.begin(), s_symbols.end(), s);
+    if (ite == s_symbols.end()) {
         this->setCurrentIndex(0);
     } else {
-        this->setCurrentIndex(ite - symbols);
+        this->setCurrentIndex(std::distance(s_symbols.begin(), ite));
     }
 }
 
 QwtSymbol::Style DAChartSymbolComboBox::getSymbolStyle() const
 {
     size_t i = this->currentIndex();
-    if (i < sizeof(symbols)) {
-        return symbols[ this->currentIndex() ];
+    if (i < s_symbols.size()) {
+        return s_symbols[ this->currentIndex() ];
     }
 
     return QwtSymbol::NoSymbol;
@@ -132,21 +135,21 @@ QwtSymbol::Style DAChartSymbolComboBox::getSymbolStyle() const
 
 QwtSymbol::Style DAChartSymbolComboBox::style(int index)
 {
-    if (index >= 0 && index < (int)sizeof(symbols)) {
-        return symbols[ index ];
+    if (index >= 0 && index < s_symbols.size()) {
+        return s_symbols[ index ];
     }
 
     return QwtSymbol::NoSymbol;
 }
 
-int DAChartSymbolComboBox::symbolIndex(const QwtSymbol::Style& style)
+int DAChartSymbolComboBox::symbolIndex(const QwtSymbol::Style& s)
 {
-    const QwtSymbol::Style* ite = std::find(symbols, symbols + sizeof(symbols), style);
-    if (ite == symbols + sizeof(symbols)) {
+    auto ite = std::find(s_symbols.begin(), s_symbols.end(), s);
+    if (ite == s_symbols.end()) {
         return 0;
     }
 
-    return (ite - symbols);
+    return std::distance(s_symbols.begin(), ite);
 }
 
 void DAChartSymbolComboBox::onCurrentIndexChanged(int index)
